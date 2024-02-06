@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <button id="filterElectric" data-filter="onlyElectric">Only Electric</button>
+        <button id="filterElectricOwner">Only Electric, owned by Jonas</button>
+        <button id="filterSeats">More then 2 seats</button>
+        <button id="filterSeatsFuel">More then 1 seat, Rugbrød fuel</button>
+        <button id="noFilter">Full List</button>
+        <ul class="tableHeader">
+            <li><strong>Type</strong></li>
+            <li><strong>Fuel</strong></li>
+            <li><strong>Passengers</strong></li>
+            <li><strong>Stops</strong></li>
+            <li><strong>OwnedBy</strong></li>
+            <li><strong>Electric</strong></li>
+            <li><strong>Tandem</strong></li>
+        </ul>
+        <ul class="tableData"></ul>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
