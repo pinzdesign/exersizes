@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Protest+Riot&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+[data-theme="light"] {
+    --bg-col: rgb(220, 220, 220);
+    --bg-header-col: darkgrey;
+    --font-col: rgb(50, 50, 50);
+    --border-col: white;
+    --border-rad: 0px;
+    --header-col: black;
+    --font-fam: "Oswald", sans-serif;
+}
+
+[data-theme="dark"] {
+    --bg-col: rgb(20, 20, 20);
+    --bg-header-col: #333;
+    --font-col: white;
+    --border-col: white;
+    --border-rad: 0px;
+    --header-col: white;
+    --font-fam: "Raleway", sans-serif;
+}
+
+[data-theme="hawaii"] {
+    --bg-col: orange;
+    --bg-header-col: orangered;
+    --font-col: white;
+    --border-col: white;
+    --border-rad: 10px;
+    --header-col: yellow;
+    --font-fam: "Protest Riot", sans-serif;
+}
+
+body {
+    background-color: var(--bg-col);
+    font-family: var(--font-fam);
+    letter-spacing: 3px;
+}
+
+header, main, footer {
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: var(--bg-header-col);
+    color: var(--font-col);
+    border: 2px solid;
+    border-color: var(--border-col);
+    border-radius: var(--border-rad);
+}
+
+main {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: 1fr 1fr;
+}
+
+h1, h2 {
+    color: var(--header-col);
+}
+
+.wrapper {
+    width: 70%;
+    margin: 30px auto;
+}
