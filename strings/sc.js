@@ -62,5 +62,5 @@ isSecure(httpAddress2);
 
 // opgave 19
 const germanName = "Goethestraße";
-const replaced = germanName.replace("ß", "ss");
+let replaced = germanName.replace("ß", "ss");
 console.log(replaced.toUpperCase());
