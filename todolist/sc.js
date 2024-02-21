@@ -1,25 +1,27 @@
-console.log("ready");
-
+// create new task in localstorage
 function addTask() {
     let txt = document.querySelector("#task_txt").value;
 
-    let date = new Date();
-    let dateAdded = date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear();
+    if(txt != "") {
+        let date = new Date();
+        let dateAdded = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear();
 
-    //console.log(dateAdded);
+        //console.log(dateAdded);
 
-    let taskObj = {
-        taskText: txt,
-        taskDate: dateAdded,
-        taskDone: false
+        let taskObj = {
+            taskText: txt,
+            taskDate: dateAdded,
+            taskDone: false
+        }
+
+        localStorage.setItem(crypto.randomUUID(), JSON.stringify(taskObj));
+        //let item = localStorage.getItem("taskTxt");
+        //console.log(item);
+        showTasks();
     }
-
-    localStorage.setItem(crypto.randomUUID(), JSON.stringify(taskObj));
-    //let item = localStorage.getItem("taskTxt");
-    //console.log(item);
-    showTasks();
 }
 
+// set the task status to opposite
 function completeTask(uid) {
     task = JSON.parse(localStorage.getItem(uid));
     task.taskDone = !task.taskDone;
@@ -27,9 +29,17 @@ function completeTask(uid) {
     showTasks();
 }
 
+// delete a task from localstorage
 function deleteTask(uid) {
     localStorage.removeItem(uid);
     console.log("removed: " + uid);
+    showTasks();
+}
+
+// delete all tasks in localstorage
+function clearTasks() {
+    localStorage.clear();
+    console.log("deleted all tasks!");
     showTasks();
 }
 
@@ -46,53 +56,75 @@ function showTasks() {
 
     let keys = Object.keys(localStorage);
     keys.forEach((item) => {
+        // parse localstorage string into object
         let task = JSON.parse(localStorage.getItem(item));
 
+        // set list according to task status
         if(task.taskDone == false) {
             list = document.querySelector("#tasks");  
         }
         else {
             list = document.querySelector("#tasks_done");
         }
-        let liNode = document.createElement("li");
+
+        // create a li element for task
+        let li = document.createElement("li");
+
+        // create a div for date
+        let liNode2 = document.createElement("div");
+        let liTxt2 = document.createTextNode(task.taskDate);
+        liNode2.appendChild(liTxt2);
+        liNode2.classList.add("task_date");
+        li.appendChild(liNode2);
+
+        // create a div for task text
+        let liNode = document.createElement("div");
         let liTxt = document.createTextNode(task.taskText);
         //console.log(task.taskText);
         liNode.appendChild(liTxt);
-        list.appendChild(liNode);
+        li.appendChild(liNode);
 
-        let liNode2 = document.createElement("li");
-        let liTxt2 = document.createTextNode(task.taskDate);
-        liNode2.appendChild(liTxt2);
-        list.appendChild(liNode2);
+        // create a div for action buttons
+        let liNode3 = document.createElement("div");
 
-        let liNode3 = document.createElement("li");
-
-        let deleteBtn = document.createElement("button");
-        deleteBtn.dataset.uid = item;
-        deleteBtn.innerText = "Slet";
-        deleteBtn.addEventListener("click", function() {
-            deleteTask(item);
-        });
-        liNode3.appendChild(deleteBtn);
-
+        // create a done button
         let completeBtn = document.createElement("button");
+
+        // set html attribute for button to localstorage key
         completeBtn.dataset.uid = item;
 
+        // set the text button, depending on list
         if(task.taskDone == false) { completeBtn.innerText = "DONE"; }
-        else { completeBtn.innerText = "Return"; }
+        else { completeBtn.innerText = "Tilbage"; }
 
+        // apply a function to button, wrapping it up in an anon function to pass attribute
         completeBtn.addEventListener("click", function() {
             completeTask(item);
         });
         liNode3.appendChild(completeBtn);
 
-        list.appendChild(liNode3);
+        // create delete button
+        let deleteBtn = document.createElement("button");
+        deleteBtn.dataset.uid = item;
+        deleteBtn.innerText = "Slet";
+
+        deleteBtn.addEventListener("click", function() {
+            deleteTask(item);
+        });
+
+        // add button and class
+        liNode3.appendChild(deleteBtn);
+        liNode3.classList.add("task_action");
+        li.appendChild(liNode3);
+
+        // finally, add li to ul list
+        list.appendChild(li);
 
         //console.log(task);
     });
 }
 
-let task_btn = document.querySelector("#task_btn");
-task_btn.addEventListener("click", addTask);
+document.querySelector("#task_btn").addEventListener("click", addTask);
+document.querySelector("#clear_btn").addEventListener("click", clearTasks);
 
 showTasks();
