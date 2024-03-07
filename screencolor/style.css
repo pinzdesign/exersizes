@@ -1,0 +1,36 @@
+body {
+    background-color: hsl(100 50% 50%);
+}
+
+button {
+    padding: 30px 50px;
+}
+
+#aniButton {
+    position: relative;
+    overflow: hidden;
+    background-color: red;
+    background-position-x: 0;
+    transition: all .3s;
+}
+
+#aniButton::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: aqua;
+    animation-name: fillOut;
+    animation-duration: 5s;
+}
+
+#aniButton:hover::before {
+    animation-duration: 10s;
+}
+
+@keyframes fillOut {
+    0% { left: -100%; }
+    100% { left: 0%; }
+}
