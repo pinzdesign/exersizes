@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Anta&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: white;
+    background-image: url("background.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: #333;
+    font-family: "Anta", sans-serif;
+    letter-spacing: 2px;
+}
+
+h2 {
+    padding: 5px;
+}
+
+header, main, footer {
+    width: 80%;
+    margin: 30px auto;
+}
+
+.grid_1_2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    padding: 5px;
+}
+
+.tasklist {
+    border: 2px dashed #666;
+    background-color: white;
+    padding: 15px;
+}
+
+li {
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr;
+    align-items: baseline;
+    transition: all .5s;
+}
+
+li:hover {
+    background-color: #e3e3e3;
+}
+
+.task_date {
+    color: #666;
+    font-size: 10px;
+}
+
+.task_action {
+    text-align: right;
+}
+
+.task_action button {
+    padding: 5px 15px;
+    border: 2px solid black;
+    margin-left: 5px;
+}
+
+.new_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.ctrl_btn {
+    border: 0;
+    padding: 15px 30px;
+    color: white;
+    transition: all .3s;
+    font-family: "Anta", sans-serif;
+    letter-spacing: 2px;
+    font-size: 20px;
+}
+
+.negative {
+    background-color: pink;
+    color: black;
+}
+
+.negative:hover {
+    background-color: red;
+    color: white;
+}
+
+.positive {
+    background-color: lightgreen;
+    color: black;
+}
+
+.positive:hover {
+    background-color: green;
+    color: white;
+}
+
+textarea {
+    height: 150px;
+    width: calc(100% - 4px);
+    margin: 30px 0px;
+    border: 2px solid black;
+}
+
+.right p {
+    margin: 30px 0px;
+}
